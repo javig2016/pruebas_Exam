@@ -44,14 +44,9 @@ function gestionarXml(datosXml){
 
   //Pregunta 1 tipo texto
   pregunta_XML = xmlDoc.getElementsByTagName("title")[0].innerHTML;
-  pregunta_HMTL = document.getElementById("p001");
+  pregunta_HMTL = document.getElementById("preg001");
   ponerDatosInputHtml(pregunta_XML, pregunta_HMTL);
   answer1_txt = xmlDoc.getElementById("preg001").getElementsByTagName("answer")[0].innerHTML;
-
-
-
- 
-
 }
 
 //****************************************************************************************************
