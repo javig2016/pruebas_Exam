@@ -39,7 +39,7 @@ function gestionarXml(dadesXml){
  
  //Pregunta 1 tipo texto
  preguntaxml=xmlDoc.getElementsByTagName("title")[0].innerHTML;
- ponerDatosInputHtml(preg001);
+ ponerDatosInputHtml(preguntaxml);
  respuestatexto=parseInt(xmlDoc.getElementsByTagName("answer")[0].innerHTML);
  
 
