@@ -35,10 +35,10 @@ window.onload = function(){
 // xmlDOC es el documento leido XML. 
 function gestionarXml(dadesXml){
  var xmlDoc = dadesXml.responseXML; //Parse XML to xmlDoc
- var preg001;
+ var preguntaxml;
  
  //Pregunta 1 tipo texto
- preg001=xmlDoc.getElementsByTagName("title")[0].innerHTML;
+ preguntaxml=xmlDoc.getElementsByTagName("title")[0].innerHTML;
  ponerDatosInputHtml(preg001);
  respuestatexto=parseInt(xmlDoc.getElementsByTagName("answer")[0].innerHTML);
  
