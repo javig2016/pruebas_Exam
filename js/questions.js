@@ -36,10 +36,12 @@ window.onload = function(){
 function gestionarXml(dadesXml){
  var xmlDoc = dadesXml.responseXML; //Parse XML to xmlDoc
  var preguntaxml;
+ var preguntahtml;
  
  //Pregunta 1 tipo texto
  preguntaxml=xmlDoc.getElementsByTagName("title")[0].innerHTML;
- ponerDatosInputHtml(preguntaxml);
+ preguntahtml=document.getElementById("preg001")
+ ponerDatosInputHtml(preguntaxml, preguntahtml);
  respuestatexto=parseInt(xmlDoc.getElementsByTagName("answer")[0].innerHTML);
  
 
@@ -104,7 +106,7 @@ function corregirCheckbox(){
 //****************************************************************************************************
 // poner los datos recibios en el HTML
 function ponerDatosInputHtml(t){
- document.getElementById("preguntaxml").innerHTML = t;
+ document.getElementById("preguntahtml").innerHTML = t;
 }
 
 function ponerDatosSelectHtml(t,opt){
