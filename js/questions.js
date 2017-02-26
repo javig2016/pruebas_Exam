@@ -1,5 +1,5 @@
 var formElement=null;
-var respuestatexto=null;
+var answer1_txt=null;
 var respuestaSelect=null;
 var respuestasCheckbox = [];
 var nota = 0;  //nota de la prueba sobre 3 puntos (hay 3 preguntas)
@@ -38,12 +38,12 @@ function gestionarXml(dadesXml){
  var pregunta_XML; //Acceder a la pregunta del archivo XML
  var pregunta_HTML; //Donde se ha de colocar la pregunta en el HTML
 
- //preugnta 1
+ //pregunta 1
   pregunta_XML = xmlDoc.getElementsByTagName("title")[0].innerHTML;
   pregunta_HTML = document.getElementById("preg001");
   ponerDatosInputHtml(pregunta_HTML, pregunta_XML);
   answer1_txt = xmlDoc.getElementById("preg001").getElementsByTagName("answer")[0].innerHTML;
-
+}
 //****************************************************************************************************
 //implementación de la corrección
 
@@ -59,3 +59,9 @@ function ponerDatosInputHtml(elementoHTML, elementoXML)
 
 //****************************************************************************************************
 //Gestionar la presentación de las respuestas
+
+function inicializar()
+{
+  document.getElementById('').innerHTML = "";
+  nota=0;
+}
