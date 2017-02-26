@@ -37,15 +37,15 @@ function gestionarXml(datosXml){
   //Parse XML a  xmlDoc
   var xmlDoc = datosXML.responseXML;
   // Llamar a pregunta XML
-  var pregunta_XML;
+  var preguntaXML;
   // Elemento HTML donde va la pregunta
-  var pregunta_HTML; //pregunta_HTML
+  var preguntaHTML; //pregunta_HTML
  
 
   //Pregunta 1 tipo texto
-  pregunta_XML = xmlDoc.getElementsByTagName("title")[0].innerHTML;
-  pregunta_HMTL = document.getElementById("preg001");
-  ponerDatosInputHtml(pregunta_XML, pregunta_HMTL);
+  preguntaXML = xmlDoc.getElementsByTagName("title")[0].innerHTML;
+  preguntaHTML = document.getElementById("preg001");
+  ponerDatosInputHtml(preguntaXML, preguntaHTML);
   answer1_txt = xmlDoc.getElementById("preg001").getElementsByTagName("answer")[0].innerHTML;
 }
 
@@ -62,8 +62,8 @@ function inicializar()
 
 //****************************************************************************************************
 // poner los datos recibios en el HTML
-function ponerDatosInputHtml(objeto_HTML, objeto_XML){
-  objeto_HMTL.innerHTML = objeto_XML;
+function ponerDatosInputHtml(objetoHTML, objetoXML){
+  objetoHMTL.innerHTML = objetoXML;
 }
 
 
