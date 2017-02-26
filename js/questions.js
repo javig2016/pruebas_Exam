@@ -35,16 +35,17 @@ window.onload = function(){
 // xmlDOC es el documento leido XML. 
 function gestionarXml(dadesXml){
  var xmlDoc = dadesXml.responseXML; //Parse XML to xmlDoc
- var preguntaxml;
- var preguntahtml;
+
  
  //Pregunta 1 tipo texto
- preguntaxml=xmlDoc.getElementsByTagName("title")[0].innerHTML;
- preguntahtml=document.getElementById("preg001")
- ponerDatosInputHtml(preguntaxml, preguntahtml);
+ var preg001=xmlDoc.getElementsByTagName("title")[0].innerHTML;
+ ponerDatosInputHtml(preg001);
  respuestatexto=parseInt(xmlDoc.getElementsByTagName("answer")[0].innerHTML);
  
-
+ //Pregunta 3 tipo texto
+ var preg003=xmlDoc.getElementsByTagName("title")[2].innerHTML;
+ ponerDatosInputHtml(preg003);
+ respuestatexto=parseInt(xmlDoc.getElementsByTagName("answer")[0].innerHTML);
 }
 
 //****************************************************************************************************
@@ -106,7 +107,7 @@ function corregirCheckbox(){
 //****************************************************************************************************
 // poner los datos recibios en el HTML
 function ponerDatosInputHtml(t){
- document.getElementById("preguntahtml").innerHTML = t;
+ document.getElementById("preg001", "preg003").innerHTML = t;
 }
 
 function ponerDatosSelectHtml(t,opt){
