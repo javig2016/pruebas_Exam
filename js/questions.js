@@ -104,7 +104,7 @@ function corregirCheckbox(){
 //****************************************************************************************************
 // poner los datos recibios en el HTML
 function ponerDatosInputHtml(t){
- document.getElementById("preg001").innerHTML = t;
+ document.getElementById("preguntaxml").innerHTML = t;
 }
 
 function ponerDatosSelectHtml(t,opt){
