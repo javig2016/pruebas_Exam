@@ -35,10 +35,10 @@ window.onload = function(){
 // xmlDOC es el documento leido XML. 
 function gestionarXml(dadesXml){
  var xmlDoc = dadesXml.responseXML; //Parse XML to xmlDoc
+ var preg001;
  
- //NUMBER
- //Recuperamos el título y la respuesta correcta de Input, guardamos el número secreto
- var preg001=xmlDoc.getElementsByTagName("title")[0].innerHTML;
+ //Pregunta 1 tipo texto
+ preg001=xmlDoc.getElementsByTagName("title")[0].innerHTML;
  ponerDatosInputHtml(preg001);
  respuestatexto=parseInt(xmlDoc.getElementsByTagName("answer")[0].innerHTML);
  
