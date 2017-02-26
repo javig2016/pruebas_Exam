@@ -83,7 +83,7 @@ function gestionarXml(datosXml){
   for(i = 0; i < opciones; i++)  {
     optionsRadio[i] = xmlDoc.getElementById("preg002").getElementsByTagName("option")[i].innerHTML;
   }
-  ponerDatosCheckboxHtml(pregunta_HTML, pregunta_XML, radio_HTML, optionsRadio, "radio");
+  ponerDatosCheckboxHtml(pregunta_HTML, pregunta_XML, radio_HTML, optionsRadio, "programa", "radio");
   answer2_rad = parseInt(xmlDoc.getElementById("preg002").getElementsByTagName("answer")[0].innerHTML);
   optionsRadio = [];
 
