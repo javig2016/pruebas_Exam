@@ -35,18 +35,14 @@ window.onload = function(){
 // xmlDOC es el documento leido XML. 
 function gestionarXml(dadesXml){
  var xmlDoc = dadesXml.responseXML; //Parse XML to xmlDoc
+ var pregunta_XML; //Acceder a la pregunta del archivo XML
+ var pregunta_HTML; //Donde se ha de colocar la pregunta en el HTML
 
- 
- //Pregunta 1 tipo texto
- var preg001=xmlDoc.getElementsByTagName("title")[0].innerHTML;
- ponerDatosInputHtml1(preg001);
- respuestatexto=parseInt(xmlDoc.getElementsByTagName("answer")[0].innerHTML);
- 
- //Pregunta 3 tipo texto
- var preg003=xmlDoc.getElementsByTagName("title")[2].innerHTML;
- ponerDatosInputHtml2(preg003);
- respuestatexto=parseInt(xmlDoc.getElementsByTagName("answer")[0].innerHTML);
-}
+ //preugnta 1
+  pregunta_XML = xmlDoc.getElementsByTagName("title")[0].innerHTML;
+  pregunta_HTML = document.getElementById("preg001");
+  ponerDatosInputHtml(pregunta_HTML, pregunta_XML);
+  answer1_txt = xmlDoc.getElementById("preg001").getElementsByTagName("answer")[0].innerHTML;
 
 //****************************************************************************************************
 //implementación de la corrección
@@ -106,8 +102,9 @@ function corregirCheckbox(){
 
 //****************************************************************************************************
 // poner los datos recibios en el HTML
-function ponerDatosInputHtml1(t){
- document.getElementById("preg001").innerHTML = t;
+function ponerDatosInputHtml(elementoHTML, elementoXML)
+{
+  elementoHTML.innerHTML = elementoXML;
 }
 
 function ponerDatosInputHtml2(t){
