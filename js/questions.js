@@ -39,12 +39,12 @@ function gestionarXml(dadesXml){
  
  //Pregunta 1 tipo texto
  var preg001=xmlDoc.getElementsByTagName("title")[0].innerHTML;
- ponerDatosInputHtml(preg001);
+ ponerDatosInputHtml1(preg001);
  respuestatexto=parseInt(xmlDoc.getElementsByTagName("answer")[0].innerHTML);
  
  //Pregunta 3 tipo texto
  var preg003=xmlDoc.getElementsByTagName("title")[2].innerHTML;
- ponerDatosInputHtml(preg003);
+ ponerDatosInputHtml2(preg003);
  respuestatexto=parseInt(xmlDoc.getElementsByTagName("answer")[0].innerHTML);
 }
 
@@ -106,9 +106,14 @@ function corregirCheckbox(){
 
 //****************************************************************************************************
 // poner los datos recibios en el HTML
-function ponerDatosInputHtml(t){
- document.getElementById("preg001", "preg003").innerHTML = t;
+function ponerDatosInputHtml1(t){
+ document.getElementById("preg001").innerHTML = t;
 }
+
+function ponerDatosInputHtml2(t){
+ document.getElementById("preg003").innerHTML = t;
+}
+
 
 function ponerDatosSelectHtml(t,opt){
   document.getElementById("tituloSelect").innerHTML=t;
