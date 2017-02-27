@@ -40,8 +40,7 @@ window.onload = function(){
     //Corregir pregunta 4 select
     corregirSelect(formElement.getElementsByTagName("select")[0], answer4_sel, "Pregunta 4: Correcta", "Pregunta 4: Incorrecta, la respuesta correcta es: ");
     //Corregir pregunta 5 radio
-    corregirRadio(formElement.programa, 
-    answer5_rad, "Pregunta 5: Correcta", "Pregunta 5: Incorrecta, la respuesta correcta es: ", "interferencia");
+    corregirRadio(formElement.programa, answer5_rad, "Pregunta 5: Correcta", "Pregunta 5: Incorrecta, la respuesta correcta es: ", "interferencia");
     //Corregir pregunta 6 select
     corregirSelect(formElement.getElementsByTagName("select")[1], answer6_sel, "Pregunta 6: Correcta", "Pregunta 6: Incorrecta, la respuesta correcta es: ");
     //Corregir pregunta 7 checkbox
