@@ -60,11 +60,11 @@ window.onload = function(){
     //Corregir pregunta 8 multiple
     corregirMultiple(formElement.getElementsByTagName("select")[2], 
     answer8_mul, "Pregunta 8: Correcta",
-    "P5: Incorrecta, las respuestas correctas son: ");
+    "Pregunta 8: Incorrecta, las respuestas correctas son: ");
     //Corregir pregunta 9 checkbox
     corregirCheckbox(formElement.exportar, 
     answer9_check, "Pregunta 9: Correcta",
-    "Pregunta 10: Incorrecta, las respuestas correctas son: ", "exportar");
+    "Pregunta 9: Incorrecta, las respuestas correctas son: ", "exportar");
     //Corregir pregunta 10 multiple
     corregirMultiple(formElement.getElementsByTagName("select")[3], 
     answer10_mul, "Pregunta 10: Correcta",
@@ -281,7 +281,7 @@ function corregirMultiple(multi, correcto, mAcierto, mFallo) {
   var r = [];
   var correctas = [];
   for(i = 0; i < correcto.length; i++) {
-    correctas[i] = select[correcto[i]].innerHTML;
+    correctas[i] = multi[correcto[i]].innerHTML;
   }
   for(j = 0; j < multi.length; j++)
   {
@@ -290,7 +290,7 @@ function corregirMultiple(multi, correcto, mAcierto, mFallo) {
       r[r.length] = j;
     }
   }
-  if(r.length == correctas.length)
+  if(r.length == correcto.length)
   {
     for(k = 0; k < r.length; k++)
     {
@@ -349,9 +349,11 @@ function ponerDatosCheckboxHtml(texto_HTML, texto_XML, checkboxHTML, checkboxOpc
 
 //****************************************************************************************************
 //Gestionar la presentación de las respuestas
-function inicializar() {
-   document.getElementById("resultados").innerHTML = "";
-   nota = 5;
+function darRespuestaHtml(r) {
+ var p = document.createElement("p");
+ var node = document.createTextNode(r);
+ p.appendChild(node);
+ document.getElementById("resultados").appendChild(p);
 }
 
 
@@ -360,9 +362,7 @@ function presentarNota() {
 }
 
 
-function darRespuestaHtml(r) {
- var p = document.createElement("p");
- var node = document.createTextNode(r);
- p.appendChild(node);
- document.getElementById("resultados").appendChild(p);
+function inicializar() {
+   document.getElementById("resultados").innerHTML = "";
+   nota = 5;
 }
