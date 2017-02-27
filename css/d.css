@@ -1,10 +1,5 @@
 ﻿body,html {background:#F4F4F4;height:100%;padding:0px;margin:0px;}
 
-
-
-
-#hidem,#showm {display:none}
-
 #paramenu {
 	font-family: "Times New Roman", Times, serif;
 	font-size: 16px;
@@ -18,7 +13,6 @@
   margin: 1% 0 0 15%;
 }
 
-
 #titulo1 {
   display: block;
   position: static;
@@ -26,16 +20,6 @@
   font-size: 50px;
   color: black;
   text-align: center;
-}
-
-.caja1 {
-  background: #DCD0C0;
-  width: 80%;
-  height: 100%;
-  margin:auto;
-  color: black;
-  font-size: 20px;
-  text-align: justify;
 }
 
 #rectorado {
@@ -52,17 +36,33 @@
   margin: 0% 5% 20% 40%;
 }
 
+#examen {
+  background: #DCD0C0;
+  width: 80%;
+  height: 100%;
+  margin:auto;
+}
+
 #mensaje_examen {
   display: block;
   margin: 0% 0% 5% 33%;
   font-size: 20px;
 }
 
+.caja1 {
+  background: #DCD0C0;
+  width: 80%;
+  height: 100%;
+  margin:auto;
+  color: black;
+  font-size: 20px;
+  text-align: justify;
+}
 
 legend{
-
   font-family: "Times New Roman", Times, serif;
   font-size: 30px;
+  color: #373737;
 }
 
 h1 {
