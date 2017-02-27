@@ -28,27 +28,48 @@ window.onload = function(){
  xhttp.open("GET", "xml/questions.xml", true);
  xhttp.send();
 
- //Corrección
+ //Corrección cuando se pulsa el botón del formulario
  formElement.onsubmit=function(){
     inicializar();
-    //Corregir pregunta 1
-    corregirTexto(formElement.getElementsByClassName("texto")[0].value,
-    answer1_txt, "Pregunta1: Correcta", 
-    "Pregunta1: Incorrecta, la respuesta correcta es: " + answer1_txt);
-    //Corregir pregunta 3
-    corregirTexto(formElement.getElementsByClassName("texto")[1].value, 
-    answer3_txt, "Pregunta3: Correcta", 
-    "Pregunta3: Incorrecta, la respuesta correcta es: " + answer3_txt);
-    //Corregir pregunta 4
-    corregirSelectSimple(formElement.getElementsByTagName("select")[0], 
-    answer4_sel, "Pregunta4: Correcta", 
-    "Pregunta4: Incorrecta, la respuesta correcta es: ");
-    //Corregir pregunta 6
-    corregirSelectSimple(formElement.getElementsByTagName("select")[0], 
-    answer6_sel, "Pregunta6: Correcta", 
-    "Pregunta6: Incorrecta, la respuesta correcta es: ");
-    corregirCheckbox();
-    presentarNota();   
+    //Corregir pregunta 1 texto
+    corregirTXT(formElement.getElementsByClassName("texto")[0].value, answer1_txt, "Pregunta 1: Correcta", "Pregunta 1: Incorrecta, la respuesta correcta es: " + answer1_txt);
+    //Corregir pregunt 2 radio
+    corregirRadio(formElement.programa, 
+    answer2_rad, "Pregunta 2: Correcta",
+    "Pregunta 2: Incorrecta, la respuesta correcta es: ", "programa");
+    //Corregir pregunta 3 texto
+    corregirTXT(formElement.getElementsByClassName("texto")[1].value, 
+    answer3_txt, "Pregunta 3: Correcta", 
+    "Pregunta 3: Incorrecta, la respuesta correcta es: " + answer3_txt);
+    //Corregir pregunta 4 select
+    corregirSelect(formElement.getElementsByTagName("select")[0], 
+    answer4_sel, "Pregunta 4: Correcta", 
+    "Pregunta 4: Incorrecta, la respuesta correcta es: ");
+    //Corregir pregunta 5 radio
+    corregirRadio(formElement.programa, 
+    answer5_rad, "Pregunta 5: Correcta",
+    "Pregunta 5: Incorrecta, la respuesta correcta es: ", "interferencia");
+    //Corregir pregunta 6 select
+    corregirSelect(formElement.getElementsByTagName("select")[1], 
+    answer6_sel, "Pregunta 6: Correcta", 
+    "Pregunta 6: Incorrecta, la respuesta correcta es: ");
+    //Corregir pregunta 7 checkbox
+    corregirCheckbox(formElement.elementos, 
+    answer7_check, "Pregunta 7: Correcta",
+    "Pregunta 7: Incorrecta, las respuestas correctas son: ", "elementos");
+    //Corregir pregunta 8 multiple
+    corregirMultiple(formElement.getElementsByTagName("select")[2], 
+    answer8_mul, "Pregunta 8: Correcta",
+    "P5: Incorrecta, las respuestas correctas son: ");
+    //Corregir pregunta 9 checkbox
+    corregirCheckbox(formElement.exportar, 
+    answer9_check, "Pregunta 9: Correcta",
+    "Pregunta 10: Incorrecta, las respuestas correctas son: ", "exportar");
+    //Corregir pregunta 10 multiple
+    corregirMultiple(formElement.getElementsByTagName("select")[3], 
+    answer10_mul, "Pregunta 10: Correcta",
+    "Pregunta 10: Incorrecta, las respuestas correctas son: ");
+    presentarNota();
     return false;
  }
 }
@@ -72,7 +93,7 @@ function gestionarXml(datosXml){
  //Pregunta 1 texto
   pregunta_XML = xmlDoc.getElementsByTagName("title")[0].innerHTML;
   pregunta_HTML = document.getElementById("preg001");
-  ponerDatosInputHtml(pregunta_HTML, pregunta_XML);
+  corregirTXT(pregunta_HTML, pregunta_XML);
   answer1_txt = xmlDoc.getElementById("preg001").getElementsByTagName("answer")[0].innerHTML;
 
  //Pregunta 2 radio
@@ -90,7 +111,7 @@ function gestionarXml(datosXml){
  //Pregunta 3 texto
   pregunta_XML = xmlDoc.getElementsByTagName("title")[2].innerHTML;
   pregunta_HTML = document.getElementById("preg003");
-  ponerDatosInputHtml(pregunta_HTML, pregunta_XML);
+  corregirTXT(pregunta_HTML, pregunta_XML);
   answer3_txt = xmlDoc.getElementById("preg003").getElementsByTagName("answer")[0].innerHTML;
 
  //Pregunta 4 select
@@ -190,70 +211,115 @@ function gestionarXml(datosXml){
 }
 
 //****************************************************************************************************
-//implementación de la corrección
+//Implementación de la corrección
 
-function corregirTexto(valor, correcto, mensajeAcierto, mensajeFallo){
+function corregirTXT(valor, correcto, mAcierto, mFallo) {
   if (valor.toLowerCase() == correcto.toLowerCase()) {
-   darRespuestaHtml(mensajeAcierto);
+   darRespuestaHtml(mAcierto);
    nota +=1;
   }
   else {
-   darRespuestaHtml(mensajeFallo);
+   darRespuestaHtml(mFallo);
   }
 }
 
 
-function corregirSelect(correcto, mensajeAcierto, mensajeFallo){
-  //Compara el índice seleccionado con el valor del íncide que hay en el xml (<answer>2</answer>)
-  //para implementarlo con type radio, usar value para enumerar las opciones <input type='radio' value='1'>...
-  //luego comparar ese value con el value guardado en answer
-  var sel = formElement.elements[1];  
-  if (sel.selectedIndex==respuestaSelect) {
-   darRespuestaHtml("P2: Correcto");
+function corregirRadio(radio, correcto, mAcierto, mFallo, atributo) {
+  var r = -1;
+  for(i = 0; i < radio.length; i++) {
+    if(radio[i].checked) {
+      r = i;
+      break;
+    }
+  }
+  if(r == correcto) {
+    mostrarCorreccion(mAcierto);
+    nota += 1;
+  }
+  else {
+    darRespuestaHtml(mFallo + document.getElementById(atributo+correcto).innerHTML);
+  }
+}
+
+
+function corregirSelect(seleccion, correcto, mAcierto, mFallo) {
+  if (seleccion.value == correcto) {
+   darRespuestaHtml(mAcierto);
    nota +=1;
   }
-  else darRespuestaHtml("P2: Incorrecto");
+  else darRespuestaHtml(mFallo + seleccion[correcto].innerHTML);
 }
 
-//Si necesitáis ayuda para hacer un corregirRadio() decirlo, lo ideal es que a podáis construirla modificando corregirCheckbox
-function corregirCheckbox(){
-  //Para cada opción mira si está checkeada, si está checkeada mira si es correcta y lo guarda en un array escorrecta[]
-  var f=formElement;
-  var escorrecta = [];
-  for (i = 0; i < f.color.length; i++) {  //"color" es el nombre asignado a todos los checkbox
-   if (f.color[i].checked) {
-    escorrecta[i]=false;     
-    for (j = 0; j < respuestasCheckbox.length; j++) {
-     if (i==respuestasCheckbox[j]) escorrecta[i]=true;
-    }
-   } 
+
+function corregirCheckbox(chkbox, correcto, mACierto, mFallo, atributo) {
+  var r = [];
+  var correctas = [];
+  for(i = 0; i < correcto.length; i++) {
+    correctas[i] = document.getElementById(atributo+correcto[i]).innerHTML;
   }
-  //Por cada opción que está chequedada, si es correcta sumamos y ponemos mensaje, si no es correcta restamos y ponemos mensaje.
-  for (i = 0; i < f.color.length; i++) {   
-   if (f.color[i].checked) {
-    if (escorrecta[i]) {
-     nota +=1.0/respuestasCheckbox.length;  //dividido por el número de respuestas correctas   
-     darRespuestaHtml("P3: "+i+" correcta");    
-    } else {
-     nota -=1.0/respuestasCheckbox.length;  //dividido por el número de respuestas correctas   
-     darRespuestaHtml("P3: "+i+" incorrecta");
-    }   
-   }
+  for(j = 0; j < chkbox.length; j++) {
+    if(chkbox[j].checked) {
+      r[r.length] = j;
+    }
+  }
+  if(r.length == correcto.length) {
+    for(k = 0; k < r.length; k++) {
+      if(r[k] != correcto[k]) {
+        darRespuestaHtml(mFallo + correctas.join(", "));
+        break;
+      }
+      darRespuestaHtml(mAcierto);
+    }
+  }
+  else {
+    darRespuestaHtml(mFallo + correctas.join(", "));
   }
 }
+
+
+function corregirMultiple(multi, correcto, mAcierto, mFallo) {
+  var r = [];
+  var correctas = [];
+  for(i = 0; i < correcto.length; i++) {
+    correctas[i] = select[correcto[i]].innerHTML;
+  }
+  for(j = 0; j < multi.length; j++)
+  {
+    if(multi[j].selected)
+    {
+      r[r.length] = j;
+    }
+  }
+  if(r.length == correctas.length)
+  {
+    for(k = 0; k < r.length; k++)
+    {
+      if(r[k] != correcto[k])
+      {
+        darRespuestaHtml(meFallo + correctas.join(", "));
+        break;
+      }
+      darRespuestaHtml(mAcierto);
+    }
+  }
+  else
+  {
+    darRespuestaHtml(mFallo + correctas.join(", "));
+  }
+}
+
 
 //****************************************************************************************************
 // poner los datos recibios en el HTML
-function ponerDatosInputHtml(texto_HTML, texto_XML){
+function corregirTXT(texto_HTML, texto_XML) {
   texto_HTML.innerHTML = texto_XML;
 }
 
-function ponerDatosSelectHtml(texto_HTML, texto_XML, sect_HTML, sect_opciones)
-{
+
+function ponerDatosSelectHtml(texto_HTML, texto_XML, sect_HTML, sect_opciones) {
   texto_HTML.innerHTML = texto_XML;
   var option;
-  for (i = 0; i < sect_opciones.length; i++)
-  { 
+  for (i = 0; i < sect_opciones.length; i++) { 
     option = document.createElement("option");
     option.text = sect_opciones[i];
     option.value = i;
@@ -261,13 +327,12 @@ function ponerDatosSelectHtml(texto_HTML, texto_XML, sect_HTML, sect_opciones)
   }  
 }
 
-function ponerDatosCheckboxHtml(texto_HTML, texto_XML, checkboxHTML, checkboxOpciones, atributo, tipo)
-{
+
+function ponerDatosCheckboxHtml(texto_HTML, texto_XML, checkboxHTML, checkboxOpciones, atributo, tipo) {
   texto_HTML.innerHTML = texto_XML;
   var input;
   var label;
-  for (i = 0; i < checkboxOpciones.length; i++)
-  {
+  for (i = 0; i < checkboxOpciones.length; i++) {
     input = document.createElement("input");
     label = document.createElement("label");
     label.innerHTML = checkboxOpciones[i];
@@ -284,18 +349,20 @@ function ponerDatosCheckboxHtml(texto_HTML, texto_XML, checkboxHTML, checkboxOpc
 
 //****************************************************************************************************
 //Gestionar la presentación de las respuestas
-function darRespuestaHtml(solucion){
+function inicializar() {
+   document.getElementById("resultados").innerHTML = "";
+   nota = 5;
+}
+
+
+function presentarNota() {
+  darRespuestaHtml("Nota: "+nota+" puntos sobre 10");
+}
+
+
+function darRespuestaHtml(r) {
  var p = document.createElement("p");
- var node = document.createTextNode(solucion);
+ var node = document.createTextNode(r);
  p.appendChild(node);
- document.getElementById('resultadosDiv').appendChild(p);
-}
-
-function presentarNota(){
-   darRespuestaHtml("Nota: "+nota+" puntos sobre 10");
-}
-
-function inicializar(){
-   document.getElementById('resultadosDiv').innerHTML = "";
-   nota=0.0;
+ document.getElementById("resultados").appendChild(p);
 }
