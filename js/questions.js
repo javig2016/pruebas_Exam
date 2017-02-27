@@ -248,36 +248,39 @@ function ponerDatosInputHtml(texto_HTML, texto_XML){
   texto_HTML.innerHTML = texto_XML;
 }
 
-function ponerDatosSelectHtml(texto_HTML, texto_XML, sectHMTL, sect_opciones){
+function ponerDatosSelectHtml(texto_HTML, texto_XML, sect_HTML, sect_opciones)
+{
   texto_HTML.innerHTML = texto_XML;
   var option;
-  for (i = 0; i < select_opciones; i++) { 
+  for (i = 0; i < sect_opciones.length; i++)
+  { 
     option = document.createElement("option");
     option.text = sect_opciones[i];
     option.value = i;
-    sectHMTL.options.add(option);
- }  
+    sect_HTML.options.add(option);
+  }  
 }
 
-
-
-function ponerDatosCheckboxHtml(texto_HTML, texto_XML, checkbox_HTML, checkbox_opciones, propiedad, clase){
- texto_HTML.innerHTML = texto_XML;
- var input;
- var label;
- for (i = 0; i < checkbox_opciones.length; i++) {
+function ponerDatosCheckboxHtml(texto_HTML, texto_XML, checkboxHTML, checkboxOpciones, atributo, tipo)
+{
+  texto_HTML.innerHTML = texto_XML;
+  var input;
+  var label;
+  for (i = 0; i < checkboxOpciones.length; i++)
+  {
     input = document.createElement("input");
     label = document.createElement("label");
-    label.innerHTML = checkbox_opciones[i];
-    label.setAttribute("for", propiedad+i);
-    input.type = clase;
-    input.name = propiedad;
-    input.id = propiedad+i;
-    checkbox_HTML.appendChild(input);
-    checkbox_HTML.appendChild(label);
-    checkbox_HTML.appendChild(document.createElement("br"));
- }  
+    label.innerHTML = checkboxOpciones[i];
+    label.setAttribute("for", atributo+i)
+    input.type = tipo;
+    input.name = atributo;
+    input.id = atributo+i;
+    checkboxHTML.appendChild(input);
+    checkboxHTML.appendChild(label);
+    checkboxHTML.appendChild(document.createElement("br"));
+  }
 }
+
 
 //****************************************************************************************************
 //Gestionar la presentación de las respuestas
