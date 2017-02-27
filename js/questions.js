@@ -63,7 +63,7 @@ function gestionarXml(datosXml){
  var radio_HTML; //Obtener los datos de esta pregunta del HTML de esta modalidad
  var select_HTML; //Obtener los datos de la pregunta del HTML de esta modalidad
  var checkbox_HTML; //Obtener los datos de la pregunta del HMTL de esta modalidad
- var opciones; //Las opciones que tendrán los diferentes tipos de preguntas con esta posibilidad
+ var opciones; //Cantidad de opciones que tendrán los diferentes tipos de preguntas con esta posibilidad
  var optionsRadio = []; //Opciones radio del XML
  var select_opciones = []; //Multiples opciones de select
  var answers_checkbx; //Respuestas múltiples de modalidad checkbox
@@ -135,7 +135,7 @@ function gestionarXml(datosXml){
   for(i = 0; i < opciones; i++) {
     optionsRadio[i] = xmlDoc.getElementById("preg007").getElementsByTagName("option")[i].innerHTML;
   }
-  ponerDatosCheckboxHtml(pregunta_HTML, pregunta_XML, checkbox_HTML, optionsRadio, "checkbox");
+  ponerDatosCheckboxHtml(pregunta_HTML, pregunta_XML, checkbox_HTML, optionsRadio, "elementos", "checkbox");
   answers_checkbx = xmlDoc.getElementById("preg007").getElementsByTagName("answer").length;
   for(i = 0; i < answers_checkbx; i++)  {
     answer7_check[i] = parseInt(xmlDoc.getElementById("preg007").getElementsByTagName("answer")[i].innerHTML);
@@ -158,14 +158,14 @@ function gestionarXml(datosXml){
   }
 
   //Pregunta 9 checkbox
-  pregunta_XML = xmlDoc.getElementsByTagName("title")[8].innerHTML;
+  pregunta_XML = xmlDoc.getElementsByTagName("title")[6].innerHTML;
   pregunta_HTML = document.getElementById("preg009");
   checkbox_HTML = document.getElementsByClassName("checkbox")[1];
   opciones = xmlDoc.getElementById("preg009").getElementsByTagName("option").length;
   for(i = 0; i < opciones; i++) {
     optionsRadio[i] = xmlDoc.getElementById("preg009").getElementsByTagName("option")[i].innerHTML;
   }
-  ponerDatosCheckboxHtml(pregunta_HTML, pregunta_XML, checkbox_HTML, optionsRadio, "checkbox");
+  ponerDatosCheckboxHtml(pregunta_HTML, pregunta_XML, checkbox_HTML, optionsRadio, "exportar", "checkbox");
   answers_checkbx = xmlDoc.getElementById("preg009").getElementsByTagName("answer").length;
   for(i = 0; i < answers_checkbx; i++)  {
     answer9_check[i] = parseInt(xmlDoc.getElementById("preg009").getElementsByTagName("answer")[i].innerHTML);
