@@ -107,7 +107,7 @@ function gestionarXml(datosXml){
  //Pregunta 5 radio
   pregunta_XML = xmlDoc.getElementsByTagName("title")[4].innerHTML;
   pregunta_HTML = document.getElementById("preg005");
-  radio_HTML = document.getElementsByClassName("radio")[0];
+  radio_HTML = document.getElementsByClassName("radio")[1];
   opciones = xmlDoc.getElementById("preg005").getElementsByTagName("option").length;
   for(i = 0; i < opciones; i++)  {
     optionsRadio[i] = xmlDoc.getElementById("preg005").getElementsByTagName("option")[i].innerHTML;
@@ -119,7 +119,7 @@ function gestionarXml(datosXml){
  //Pregunta 6 select
   pregunta_XML = xmlDoc.getElementsByTagName("title")[5].innerHTML;
   pregunta_HTML = document.getElementById("preg006");
-  select_HTML = document.getElementsByTagName("select")[0];
+  select_HTML = document.getElementsByTagName("select")[1];
   opciones = xmlDoc.getElementById("preg006").getElementsByTagName("option").length;
   for(i = 0; i < opciones; i++) {
     select_opciones[i] = xmlDoc.getElementById("preg006").getElementsByTagName("option")[i].innerHTML;
@@ -145,7 +145,7 @@ function gestionarXml(datosXml){
  //Pregunta 8 multiple
   pregunta_XML = xmlDoc.getElementsByTagName("title")[7].innerHTML;
   pregunta_HTML = document.getElementById("preg008");
-  select_HTML = document.getElementsByTagName("select")[3];
+  select_HTML = document.getElementsByTagName("select")[2];
   opciones = xmlDoc.getElementById("preg008").getElementsByTagName("option").length;
   for(i = 0; i < nopciones; i++)  {
     select_opciones[i] = xmlDoc.getElementById("preg008").getElementsByTagName("option")[i].innerHTML;
@@ -160,7 +160,7 @@ function gestionarXml(datosXml){
   //Pregunta 9 checkbox
   pregunta_XML = xmlDoc.getElementsByTagName("title")[8].innerHTML;
   pregunta_HTML = document.getElementById("preg009");
-  checkbox_HTML = document.getElementsByClassName("checkbox")[0];
+  checkbox_HTML = document.getElementsByClassName("checkbox")[1];
   opciones = xmlDoc.getElementById("preg009").getElementsByTagName("option").length;
   for(i = 0; i < opciones; i++) {
     optionsRadio[i] = xmlDoc.getElementById("preg009").getElementsByTagName("option")[i].innerHTML;
