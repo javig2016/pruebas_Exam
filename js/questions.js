@@ -248,16 +248,18 @@ function ponerDatosInputHtml(texto_HTML, texto_XML){
   texto_HTML.innerHTML = texto_XML;
 }
 
-function ponerDatosSelectHtml(texto_HTML, texto_XML, select_HMTL, select_opciones){
+function ponerDatosSelectHtml(texto_HTML, texto_XML, sectHMTL, sect_opciones){
   texto_HTML.innerHTML = texto_XML;
   var option;
   for (i = 0; i < select_opciones; i++) { 
     option = document.createElement("option");
-    option.text = select_opciones[i];
+    option.text = sect_opciones[i];
     option.value = i;
-    select_HMTL.options.add(option);
+    sectHMTL.options.add(option);
  }  
 }
+
+
 
 function ponerDatosCheckboxHtml(texto_HTML, texto_XML, checkbox_HTML, checkbox_opciones, propiedad, clase){
  texto_HTML.innerHTML = texto_XML;
