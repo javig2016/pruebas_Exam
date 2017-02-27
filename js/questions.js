@@ -177,7 +177,7 @@ function gestionarXml(datosXml){
   pregunta_HTML = document.getElementById("preg010");
   select_HTML = document.getElementsByTagName("select")[3];
   opciones = xmlDoc.getElementById("preg010").getElementsByTagName("option").length;
-  for(i = 0; i < nopciones; i++)  {
+  for(i = 0; i < opciones; i++)  {
     select_opciones[i] = xmlDoc.getElementById("preg010").getElementsByTagName("option")[i].innerHTML;
   }
   ponerDatosSelectHtml(pregunta_HTML, pregunta_XML, select_HTML, select_opciones);
