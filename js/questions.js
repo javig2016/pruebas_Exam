@@ -366,5 +366,5 @@ function presentarNota() {
 
 function inicializar() {
    document.getElementById("resultados").innerHTML = "";
-   nota = 5;
+   nota = 0;
 }
