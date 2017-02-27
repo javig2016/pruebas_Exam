@@ -235,42 +235,30 @@ function corregirSelect(seleccion, correcto, mAcierto, mFallo) {
 }
 
 
-function corregirCheckbox(checkbox, correctas, mensajeOK, mensajeError, atributo)
-{
-  var respuestas = [];
-  var texto_correctas = [];
-  // este for es para imprimir luego el mensaje de error
-  for(i = 0; i < correctas.length; i++)
-  {
-    // select[correctas[i]].innerHTML = formElement.getElementsByTagName("select")[2][res_dbz5_mul[i]].innerHTML
-    texto_correctas[i] = document.getElementById(atributo+correctas[i]).innerHTML;
+function corregirCheckbox(chexbox, correcto, mAcierto, mFallo, atributo) {
+  var rs = [];
+  var correctas = [];
+  for(i = 0; i < correcto.length; i++) {
+   correctas[i] = document.getElementById(atributo+correcto[i]).innerHTML;
   }
-  // esto es para recoger las respuestas que ha marcado el usuario
-  for(j = 0; j < checkbox.length; j++)
-  {
-    // si tenemos una opcion seleccionada, la guardamos dentro de una array de respuestas
-    if(checkbox[j].checked)
-    {
-      respuestas[respuestas.length] = j;
+  for(j = 0; j < chexbox.length; j++) {
+    if(chexbox[j].checked) {
+      rs[rs.length] = j;
     }
   }
-  // si las arrays no son iguales, dara mensaje de error
-  if(respuestas.length == correctas.length)
-  {
-    for(k = 0; k < respuestas.length; k++)
-    {
-      // si las respuestas son iguales, no saltara el break
-      if(respuestas[k] != correctas[k])
+  if(rs.length == correcto.length) {
+    for(k = 0; k < rs.length; k++) {
+            if(rs[k] != correcto[k])
       {
-        darRespuestaHtml(mensajeError + texto_correctas.join(", "));
+        darRespuestaHtml(mFallo + correctas.join(", "));
         break;
       }
-      darRespuestaHtml(mensajeOK);
+      darRespuestaHtml(mAcierto);
     }
   }
   else
   {
-    darRespuestaHtml(mensajeError + texto_correctas.join(", "));
+    darRespuestaHtml(mFallo + correctas.join(", "));
   }
 }
 
