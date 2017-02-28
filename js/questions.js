@@ -195,7 +195,7 @@ function gestionarXml(datosXml){
 //****************************************************************************************************
 //Implementación de la corrección
 
-corregirTXT(formElement.getElementsByClassName("text")[0].value, answer1_txt, "Pregunta 1: Correcta", "Pregunta 1: Incorrecta, la respuesta correcta es: " + answer1_txt);
+//corregirTXT(formElement.getElementsByClassName("text")[0].value, answer1_txt, "Pregunta 1: Correcta", "Pregunta 1: Incorrecta, la respuesta correcta es: " + answer1_txt);
 
 function corregirTXT(valor, correcto, mAcierto, mFallo) {
   if (valor.toLowerCase() == correcto.toLowerCase()) {
