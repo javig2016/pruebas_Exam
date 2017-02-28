@@ -44,11 +44,11 @@ window.onload = function(){
     //Corregir pregunta 6 select
     corregirSelect(formElement.getElementsByTagName("select")[1], answer6_sel, "Pregunta 6: Correcta", "Pregunta 6: Incorrecta, la respuesta correcta es: ");
     //Corregir pregunta 7 checkbox
-    corregirCheckbox1(formElement.elementos, answer7_check, "Pregunta 7: Correcta", "Pregunta 7: Incorrecta, las respuestas correctas son: ", "elementos");
+    corregirCheckbox(formElement.elementos, answer7_check, "Pregunta 7: Correcta", "Pregunta 7: Incorrecta, las respuestas correctas son: ", "elementos");
     //Corregir pregunta 8 multiple
     corregirMultiple(formElement.getElementsByTagName("select")[2], answer8_mul, "Pregunta 8: Correcta", "Pregunta 8: Incorrecta, las respuestas correctas son: ");
     //Corregir pregunta 9 checkbox
-    corregirCheckbox2(formElement.exportar, answer9_check, "Pregunta 9: Correcta", "Pregunta 9: Incorrecta, las respuestas correctas son: ", "exportar");
+    corregirCheckbox(formElement.exportar, answer9_check, "Pregunta 9: Correcta", "Pregunta 9: Incorrecta, las respuestas correctas son: ", "exportar");
     //Corregir pregunta 10 multiple
     corregirMultiple(formElement.getElementsByTagName("select")[3], answer10_mul, "Pregunta 10: Correcta", "Pregunta 10: Incorrecta, las respuestas correctas son: ");
     presentarNota();
@@ -75,7 +75,7 @@ function gestionarXml(datosXml){
  //Pregunta 1 texto
   pregunta_XML = xmlDoc.getElementsByTagName("title")[0].innerHTML;
   pregunta_HTML = document.getElementById("preg001");
-  corregirTXT(pregunta_HTML, pregunta_XML);
+  ponderdatosTXT(pregunta_HTML, pregunta_XML);
   answer1_txt = xmlDoc.getElementById("preg001").getElementsByTagName("answer")[0].innerHTML;
 
  //Pregunta 2 radio
@@ -93,7 +93,7 @@ function gestionarXml(datosXml){
  //Pregunta 3 texto
   pregunta_XML = xmlDoc.getElementsByTagName("title")[2].innerHTML;
   pregunta_HTML = document.getElementById("preg003");
-  corregirTXT(pregunta_HTML, pregunta_XML);
+  ponderdatosTXT(pregunta_HTML, pregunta_XML);
   answer3_txt = xmlDoc.getElementById("preg003").getElementsByTagName("answer")[0].innerHTML;
 
  //Pregunta 4 select
@@ -235,35 +235,7 @@ function corregirSelect(seleccion, correcto, mAcierto, mFallo) {
 
 //corregirCheckbox(formElement.exportar, answer9_check, "Pregunta 9: Correcta", "Pregunta 9: Incorrecta, las respuestas correctas son: ", "exportar");
 
-function corregirCheckbox1(chexbox, correcto, mAcierto, mFallo, atributo) {
-  var rs = [];
-  var correctas = [];
-  for(i = 0; i < correcto.length; i++) {
-   correctas[i] = document.getElementById(atributo+correcto[i]).innerHTML;
-  }
-  for(j = 0; j < chexbox.length; j++) {
-    if(chexbox[j].checked) {
-      rs[rs.length] = j;
-    }
-  }
-  if(rs.length == correcto.length) {
-    for(k = 0; k < rs.length; k++) {
-            if(rs[k] != correcto[k])
-      {
-        darRespuestaHtml(mFallo + correctas.join(", "));
-        break;
-      }
-      darRespuestaHtml(mAcierto);
-    }
-  }
-  else
-  {
-    darRespuestaHtml(mFallo + correctas.join(", "));
-  }
-}
-
-
-function corregirCheckbox2(chexbox, correcto, mAcierto, mFallo, atributo) {
+function corregirCheckbox(chexbox, correcto, mAcierto, mFallo, atributo) {
   var rs = [];
   var correctas = [];
   for(i = 0; i < correcto.length; i++) {
@@ -292,7 +264,7 @@ function corregirCheckbox2(chexbox, correcto, mAcierto, mFallo, atributo) {
 
 
 function corregirMultiple(multi, correcto, mAcierto, mFallo) {
-  var r = [];
+  var rs = [];
   var correctas = [];
   for(i = 0; i < correcto.length; i++) {
     correctas[i] = multi[correcto[i]].innerHTML;
@@ -301,14 +273,14 @@ function corregirMultiple(multi, correcto, mAcierto, mFallo) {
   {
     if(multi[j].selected)
     {
-      r[r.length] = j;
+      rs[rs.length] = j;
     }
   }
-  if(r.length == correcto.length)
+  if(rs.length == correcto.length)
   {
-    for(k = 0; k < r.length; k++)
+    for(k = 0; k < rs.length; k++)
     {
-      if(r[k] != correcto[k])
+      if(rs[k] != correcto[k])
       {
         darRespuestaHtml(meFallo + correctas.join(", "));
         break;
@@ -327,7 +299,7 @@ function corregirMultiple(multi, correcto, mAcierto, mFallo) {
 // poner los datos recibios en el HTML
 
 
-function corregirTXT(texto_HTML, texto_XML) {
+function ponderdatosTXT(texto_HTML, texto_XML) {
   texto_HTML.innerHTML = texto_XML;
 }
 
