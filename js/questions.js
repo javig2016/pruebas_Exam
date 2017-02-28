@@ -44,11 +44,11 @@ window.onload = function(){
     //Corregir pregunta 6 select
     corregirSelect(formElement.getElementsByTagName("select")[1], answer6_sel, "Pregunta 6: Correcta", "Pregunta 6: Incorrecta, la respuesta correcta es: ");
     //Corregir pregunta 7 checkbox
-    corregirCheckbox(formElement.elementos, answer7_check, "Pregunta 7: Correcta", "Pregunta 7: Incorrecta, las respuestas correctas son: ", "elementos");
+    corregirCheckbox1(formElement.elementos, answer7_check, "Pregunta 7: Correcta", "Pregunta 7: Incorrecta, las respuestas correctas son: ", "elementos");
     //Corregir pregunta 8 multiple
     corregirMultiple(formElement.getElementsByTagName("select")[2], answer8_mul, "Pregunta 8: Correcta", "Pregunta 8: Incorrecta, las respuestas correctas son: ");
     //Corregir pregunta 9 checkbox
-    corregirCheckbox(formElement.exportar, answer9_check, "Pregunta 9: Correcta", "Pregunta 9: Incorrecta, las respuestas correctas son: ", "exportar");
+    corregirCheckbox2(formElement.exportar, answer9_check, "Pregunta 9: Correcta", "Pregunta 9: Incorrecta, las respuestas correctas son: ", "exportar");
     //Corregir pregunta 10 multiple
     corregirMultiple(formElement.getElementsByTagName("select")[3], answer10_mul, "Pregunta 10: Correcta", "Pregunta 10: Incorrecta, las respuestas correctas son: ");
     presentarNota();
@@ -195,12 +195,11 @@ function gestionarXml(datosXml){
 //****************************************************************************************************
 //Implementación de la corrección
 
-//corregirTXT(formElement.getElementsByClassName("text")[0].value, answer1_txt, "Pregunta 1: Correcta", "Pregunta 1: Incorrecta, la respuesta correcta es: " + answer1_txt);
 
 function corregirTXT(valor, correcto, mAcierto, mFallo) {
   if (valor.toLowerCase() == correcto.toLowerCase()) {
    darRespuestaHtml(mAcierto);
-   nota +=1;
+   nota += 1;
   }
   else {
    darRespuestaHtml(mFallo);
@@ -234,8 +233,37 @@ function corregirSelect(seleccion, correcto, mAcierto, mFallo) {
   else darRespuestaHtml(mFallo + seleccion[correcto].innerHTML);
 }
 
+//corregirCheckbox(formElement.exportar, answer9_check, "Pregunta 9: Correcta", "Pregunta 9: Incorrecta, las respuestas correctas son: ", "exportar");
 
-function corregirCheckbox(chexbox, correcto, mAcierto, mFallo, atributo) {
+function corregirCheckbox1(chexbox, correcto, mAcierto, mFallo, atributo) {
+  var rs = [];
+  var correctas = [];
+  for(i = 0; i < correcto.length; i++) {
+   correctas[i] = document.getElementById(atributo+correcto[i]).innerHTML;
+  }
+  for(j = 0; j < chexbox.length; j++) {
+    if(chexbox[j].checked) {
+      rs[rs.length] = j;
+    }
+  }
+  if(rs.length == correcto.length) {
+    for(k = 0; k < rs.length; k++) {
+            if(rs[k] != correcto[k])
+      {
+        darRespuestaHtml(mFallo + correctas.join(", "));
+        break;
+      }
+      darRespuestaHtml(mAcierto);
+    }
+  }
+  else
+  {
+    darRespuestaHtml(mFallo + correctas.join(", "));
+  }
+}
+
+
+function corregirCheckbox2(chexbox, correcto, mAcierto, mFallo, atributo) {
   var rs = [];
   var correctas = [];
   for(i = 0; i < correcto.length; i++) {
