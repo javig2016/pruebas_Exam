@@ -32,11 +32,11 @@ window.onload = function(){
  formElement.onsubmit=function(){
     inicializar();
     //Corregir pregunta 1 texto
-    corregirTXT(formElement.getElementsByClassName("text")[0].value, answer1_txt, "Pregunta 1: Correcta", "Pregunta 1: Incorrecta, la respuesta correcta es: " + answer1_txt);
+    corregirTXT(formElement.getElementsByClassName("texto")[0].value, answer1_txt, "Pregunta 1: Correcta", "Pregunta 1: Incorrecta, la respuesta correcta es: " + answer1_txt);
     //Corregir pregunt 2 radio
     corregirRadio(formElement.programa, answer2_rad, "Pregunta 2: Correcta", "Pregunta 2: Incorrecta, la respuesta correcta es: ", "programa");
     //Corregir pregunta 3 texto
-    corregirTXT(formElement.getElementsByClassName("text")[1].value, answer3_txt, "Pregunta 3: Correcta", "Pregunta 3: Incorrecta, la respuesta correcta es: " + answer3_txt);
+    corregirTXT(formElement.getElementsByClassName("texto")[1].value, answer3_txt, "Pregunta 3: Correcta", "Pregunta 3: Incorrecta, la respuesta correcta es: " + answer3_txt);
     //Corregir pregunta 4 select
     corregirSelect(formElement.getElementsByTagName("select")[0], answer4_sel, "Pregunta 4: Correcta", "Pregunta 4: Incorrecta, la respuesta correcta es: ");
     //Corregir pregunta 5 radio
@@ -195,6 +195,7 @@ function gestionarXml(datosXml){
 //****************************************************************************************************
 //Implementación de la corrección
 
+corregirTXT(formElement.getElementsByClassName("text")[0].value, answer1_txt, "Pregunta 1: Correcta", "Pregunta 1: Incorrecta, la respuesta correcta es: " + answer1_txt);
 
 function corregirTXT(valor, correcto, mAcierto, mFallo) {
   if (valor.toLowerCase() == correcto.toLowerCase()) {
